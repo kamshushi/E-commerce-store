@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Grid } from "@material-ui/core";
 // components
 import Product from "./Product/Product";
 // styles
 import useStyles from "./styles";
 
-const Products = ({ products, onAddToCart }) => {
+const Products = ({ products, onAddToCart, clearErrors }) => {
   const classes = useStyles();
+  useEffect(() => {
+    clearErrors();
+  }, []);
   return (
     <main className={classes.content}>
       <div className={classes.toolbar} />

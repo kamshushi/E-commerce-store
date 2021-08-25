@@ -52,6 +52,9 @@ const App = () => {
       setErrorMessage(error.data.error.message);
     }
   };
+  const clearErrors = () => {
+    setErrorMessage("");
+  };
 
   useEffect(() => {
     fetchProducts();
@@ -64,7 +67,11 @@ const App = () => {
         <Navbar totalItems={cart?.total_items} />
         <Switch>
           <Route exact path="/">
-            <Products products={products} onAddToCart={handleAddToCart} />
+            <Products
+              clearErrors={clearErrors}
+              products={products}
+              onAddToCart={handleAddToCart}
+            />
           </Route>
           <Route exact path="/cart">
             <Cart

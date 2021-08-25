@@ -33,7 +33,6 @@ const Checkout = ({ cart, order, onCaptureCheckout, error }) => {
   const next = (data) => {
     setShippingData(data);
     nextStep();
-    console.log(data);
   };
 
   const Form = () =>
@@ -74,15 +73,6 @@ const Checkout = ({ cart, order, onCaptureCheckout, error }) => {
       </div>
     );
 
-  if (error) {
-    <>
-      <Typography variant="h5">Error: {error}</Typography>
-      <br />
-      <Button component={Link} to="/" variant="outlined" type="button">
-        Back to Home
-      </Button>
-    </>;
-  }
   const generateToken = async () => {
     try {
       const token = await commerce.checkout.generateToken(cart.id, {
@@ -97,8 +87,20 @@ const Checkout = ({ cart, order, onCaptureCheckout, error }) => {
 
   useEffect(() => {
     generateToken();
-  }, [cart]);
+  }, []);
 
+  if (error) {
+    return (
+      <>
+        <div style={{ marginTop: 100 }} />
+        <Typography variant="h5">Error: {error}</Typography>
+        <br />
+        <Button component={Link} to="/" variant="outlined" type="button">
+          Back to Home
+        </Button>
+      </>
+    );
+  }
   return (
     <>
       <CssBaseline />

@@ -28,6 +28,7 @@ const PaymentForm = ({
 
     if (error) {
       console.log(error);
+      console.log("eee");
     } else {
       const orderData = {
         line_items: checkoutToken.live.line_items,
